@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Hero from '../Images/Hero Image.png';
+import Logo from '../Images/Logo.png'
 
 // Navigation component
 function Navigation() {
@@ -56,7 +59,7 @@ function CancelButton({ setToggleMenu }) {
 // Navigation item component
 function NavItem ({href, children}) {
     return (
-        <li className="sm:ml-[28px] text[14px] mb-[8px] sm:mb-[0px] px-[8px] py-[8px] sm:px[0] sm:py[0]">
+        <li className="sm:ml-[28px] text[14px] mb-[8px] sm:mb-[0px] px-[4px] py-[4px] sm:px[0] sm:py[0]">
             <a href={href}>{children}</a>
         </li>
     );
@@ -66,20 +69,22 @@ function NavItem ({href, children}) {
 function Home() {
     const [toggleMenu, setToggleMenu] = useState(false);
 
+    const notify = () => toast.info('Get free consultation button clicked!');
+
     return (
         <div className='relative flex flex-col'>
-            <div className="flex justify-between bg-customPurple text-white py-[26px] px-[80px]">
-                <div>
-                    <h1 className='font-serif text-[25px]'>AT DIGITAL</h1>
+            <div className="flex justify-between bg-customPurple text-white py-[26px] px-[20px] sm:px-[40px] md:px-[60px] lg:px-[80px] ">
+                <div className=''>
+                        <img src={Logo} className='object-cover'/>
                 </div>
                 <Navigation/>
                 <MobileNavigation toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
                 <ToggleButton toggleMenu={toggleMenu} setToggleMenu={setToggleMenu} />
             </div>
             <img src={Hero} alt="Hero"/>
-            <div className='bg-gradient-to-r from-teal-400 to-green-500 text-white sm:absolute w-full sm:w-3/5 left-[80px] bottom-[20px] pt-[24px] px-[40px] pb-[32px]'>
-                <p className='sm:text-[48px] text-[36px] mb-[8px]'>We crush your competitors, goals, and sales records - without the B.S.</p>
-                <button className='font-inter text-white bg-customOrange text-sm font-bold py-3 px-4 w-fit'>Get free consultation</button>
+            <div className='bg-gradient-to-r from-teal-400 to-green-500 text-white md:absolute w-full md:w-1/2 left-[60px] bottom-[20px] pt-[24px] px-[40px] pb-[32px]'>
+                <p className='sm:text-[35px] font-bold text-[36px] leading-[45px] mb-[8px]'>We crush your competitors, goals, and sales records - without the B.S.</p>
+                <button onClick={notify} className='font-inter text-white bg-customOrange font-bold w-fit text-[14px] py-[12px] px-[20px] '>Get free consultation</button>
             </div>
         </div>  
     );
